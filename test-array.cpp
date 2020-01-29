@@ -125,7 +125,7 @@ void test9() {
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(t));
   t_true(l->get(2)->equals(u));
-  t_true(l->remove(1);
+  t_true(l->remove(1));
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(u));
   OK("9");
@@ -142,7 +142,7 @@ void test10() {
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(t));
   t_true(l->get(2)->equals(u));
-  t_true(l->remove(1);
+  t_true(l->remove(1));
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(u));
   l->push_back(t);
@@ -278,7 +278,7 @@ void test19() {
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(t));
   t_true(l->get(2)->equals(u));
-  t_true(l->remove(1);
+  t_true(l->remove(1));
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(u));
   OK("19");
@@ -295,7 +295,7 @@ void test20() {
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(t));
   t_true(l->get(2)->equals(u));
-  t_true(l->remove(1);
+  t_true(l->remove(1));
   t_true(l->get(0)->equals(s));
   t_true(l->get(1)->equals(u));
   l->push_back(t);

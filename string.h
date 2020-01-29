@@ -1,5 +1,8 @@
 //lang::CwC 
 #pragma once
+
+#include <cstring>
+#include <cstdlib>
 #include "object.h"
 
 /**
@@ -15,13 +18,22 @@ public:
 	 * Constructor.
 	 * @arg c: the character array.  
 	*/
-	String(char* c) {
+	String(const char* c) {
+	    size_ = strlen(c);
+	    val_ = new char[size_ + 1];
+	    strcpy(val_, c);
 	}
 
 	/**
 	 * Overriding the hash from Object class. Generates a unique hash for this String.
 	*/
 	virtual size_t hash() {
+        // Hashing algorithm is djb2 from http://www.cse.yorku.ca/~oz/hash.html
+        size_t hash = 5381;
+        for (int i = 0; i < size_; i++) {
+            hash = ((hash << 5) + hash) + (size_t)val_[i];
+        }
+        return hash;
 	}
 
 	/**
@@ -29,6 +41,11 @@ public:
 	 * @arg other: the Object you're testing equality against. 
 	*/
 	virtual bool equals(Object * other) {
+	    String* otherString = dynamic_cast<String*>(other);
+	    if (otherString) {
+	        return !strcmp(otherString->val_, val_);
+	    }
+	    return false;
 	}
 
 	/**
@@ -38,6 +55,7 @@ public:
 	 * @arg s: the String you're comparing against. 
 	*/
     virtual int compare(String *s) {
+        return strcmp(val_, s->val_);
     }
 
 	/**
@@ -46,11 +64,23 @@ public:
 	 * @arg s: the String you want to concatenate. 
 	*/
     virtual String* concat(String *s) {
+        char* str = new char[size_ + s->size_ + 1];
+        strcpy(str, val_);
+        strcat(str, s->val_);
+
+        String* newStr = new String(str);
+        delete [] str;
+
+        return newStr;
     }
+
+    // compares the strings based on alphabetical order
+    virtual int cmp(String *that) { return compare(that); }
 
 	/**
 	 * Destructor for this String class.
 	*/
 	virtual ~String() {
+	    delete [] val_;
 	}
 };
