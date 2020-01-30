@@ -9,9 +9,16 @@
 
 /** An element that can store any basic primitive, float, int, bool or pointers */
 union Element {
+    /** The float value of the element */
     float f;
+
+    /** The int value of the element */
     int i;
+
+    /** The bool value of the element */
     bool b;
+
+    /** The mem addr value of the element */
     void* ptr;
 };
 
@@ -174,6 +181,7 @@ class RawArray {
 class ArrayObject : public Object {
 public:
 
+    /** The raw array that backs this array */
     RawArray _rawArray;
 
     /**
@@ -314,6 +322,8 @@ public:
 */
 class ArrayString : public Object {
 public:
+
+        /** The raw array that backs this array */
         ArrayObject _array;
 
     /**
@@ -564,6 +574,7 @@ public:
 class ArrayFloat : public Object {
 public:
 
+        /** The raw array that backs this array */
         RawArray _rawArray;
 
     /**
@@ -695,6 +706,7 @@ public:
 class ArrayBool : public Object {
 public:
 
+        /** The raw array that backs this array */
         RawArray _rawArray;
 
     /**
