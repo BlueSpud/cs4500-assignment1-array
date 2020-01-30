@@ -517,6 +517,7 @@ public:
         for (size_t i = 0; i < _rawArray.size(); i++) {
             hash += _rawArray.get(i).i;
         }
+        return hash;
     }
 
     /**
@@ -535,7 +536,7 @@ public:
      * arg i: the index of the element you want to remove. 
     */
     virtual int remove(size_t i) {
-        _rawArray.remove(i);
+        return _rawArray.remove(i).i;
     }
 
     /**
@@ -546,7 +547,7 @@ public:
     virtual int set(size_t i, int e) {
         Element element;
         element.i = e;
-        _rawArray.set(i, element);
+        return _rawArray.set(i, element).i;
     }
 
     /**
@@ -653,6 +654,7 @@ public:
         for (size_t i = 0; i < _rawArray.size(); i++) {
             hash += _rawArray.get(i).f;
         }
+        return hash;
     }
 
     /**
@@ -668,7 +670,7 @@ public:
      * arg i: the index of the element you want to remove. 
     */
     virtual float remove(size_t i) {
-        _rawArray.remove(i);
+        return _rawArray.remove(i).f;
     }
 
     /**
