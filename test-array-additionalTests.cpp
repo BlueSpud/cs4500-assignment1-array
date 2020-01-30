@@ -18,15 +18,11 @@ void arrayStressTest() {
     ArrayString *arr0 = new ArrayString();
 
     // Testing push_back
+    char buffer[100];
     for (int i = 0; i < _stressTestVal; i++) {
-        char *charArr = new char(6);
-        strcpy(charArr, "test");
-        charArr[4] = i;
-        charArr[5] = '\0';
-        String *currStr = new String(charArr);
+        sprintf(buffer, "test%i", i);
+        String *currStr = new String(buffer);
         arr0->push_back(currStr);
-
-        delete charArr;
     }
 
     // Testing get
@@ -41,7 +37,7 @@ void arrayStressTest() {
     t_true(arr0->get(38)->hash() == replace38->hash());
 
     // Testing index_of
-    t_true(arr0->index_of(test38) == arr0->size());
+    t_true(arr0->index_of(test38) >= arr0->size());
     t_true(arr0->index_of(replace38) == 38);
 
     delete test38;
