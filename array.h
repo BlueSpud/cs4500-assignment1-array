@@ -661,8 +661,11 @@ public:
      * Returns the index of the first occurrence of o, or >size() if not there
      * arg o: the Object that you want the index for.
     */
-    virtual size_t index_of(Object* o) {
-        // TODO WAITING ON GROUP
+    virtual size_t index_of(float o) {
+        for (size_t index = 0; index < _rawArray.size(); index++) {
+            if (o == _rawArray.get(index).f) { return index; }
+        }
+        return size() + 1;
     }
 
     /**
@@ -678,8 +681,10 @@ public:
      * arg i: the index of the element you want to replace. 
      * arg e: the element that you're replacing it with.
     */
-    virtual float set(size_t i, Object* o) {
-        // TODO WAITING ON GROUP
+    virtual float set(size_t i, float o) {
+        Element element;
+        element.f = o;
+        _rawArray.set(i, element);
     }
 
     /**
@@ -700,8 +705,7 @@ public:
      * @arg e: The float you want to test for containment.
     */
     virtual bool contains(float e) {
-        // TODO WAITING ON GROUP
-        // return index_of(e) <= size();
+         return index_of(e) <= size();
     }
 };
 
@@ -814,8 +818,10 @@ public:
      * arg i: the index of the element you want to replace. 
      * arg e: the element that you're replacing it with.
     */
-    virtual bool set(size_t i, Object* o) {
-        // TODO WAITING ON GROUP
+    virtual bool set(size_t i, bool o) {
+        Element element;
+        element.b = o;
+        _rawArray.set(i, element);
     }
 
     /**
